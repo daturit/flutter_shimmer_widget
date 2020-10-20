@@ -9,11 +9,6 @@ A package provides an easy way to add shimmer effect in Flutter project
 <img src="https://media.giphy.com/media/rKxuj8sFmaRE1G6zJm/giphy.gif?raw=true" align = "center" height = "650px">
 </p>
 
-<p>
-<img src = "https://github.com/daturit/flutter_expand_view/blob/main/flutter_expand_view/intro1.png?raw=true" align = "center" height = "550px"/>
-<img src = "https://github.com/daturit/flutter_expand_view/blob/main/flutter_expand_view/intro2.png?raw=true" align = "center" height = "550px"/>
-</p>
-
 ## Example Project
 
 There is a example project in the `example` folder. Check it out. Otherwise, keep reading to get up and running.
