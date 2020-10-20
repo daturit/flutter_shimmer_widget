@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'flutter_shimmer_loading_widget.dart';
 
-
 class SimpleTextPlaceholder extends StatelessWidget {
-
   final TextAlign align;
   final double height;
 
@@ -27,7 +25,6 @@ class SimpleTextPlaceholder extends StatelessWidget {
 }
 
 class SimpleTextPlaceholderHistory extends StatelessWidget {
-
   final TextAlign align;
   final double height;
 
@@ -50,10 +47,9 @@ class SimpleTextPlaceholderHistory extends StatelessWidget {
 }
 
 class CardPlaceHolderWithAvatar extends StatelessWidget {
-
   final double height;
 
-  CardPlaceHolderWithAvatar({ this.height = 150});
+  CardPlaceHolderWithAvatar({this.height = 150});
 
   @override
   Widget build(BuildContext context) {
@@ -91,16 +87,14 @@ class CardPlaceHolderWithAvatar extends StatelessWidget {
         ),
       ),
     );
-
   }
 }
 
 class CardPlaceHolderWithImage extends StatelessWidget {
-
   final int countText;
   final double height;
 
-  CardPlaceHolderWithImage({ this.height = 200, this.countText = 0});
+  CardPlaceHolderWithImage({this.height = 200, this.countText = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +124,5 @@ class CardPlaceHolderWithImage extends StatelessWidget {
         ),
       ),
     );
-
   }
 }
-

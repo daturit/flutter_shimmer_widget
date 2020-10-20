@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-class FlutterShimmnerLoadingWidget extends StatefulWidget {
 
+class FlutterShimmnerLoadingWidget extends StatefulWidget {
   /// Defines how many lines to build
   final int count;
 
@@ -70,10 +70,13 @@ class FlutterShimmnerLoadingWidget extends StatefulWidget {
         super(key: key);
 
   @override
-  _FlutterShimmnerLoadingWidgetState createState() => _FlutterShimmnerLoadingWidgetState();
+  _FlutterShimmnerLoadingWidgetState createState() =>
+      _FlutterShimmnerLoadingWidgetState();
 }
 
-class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWidget> with SingleTickerProviderStateMixin {
+class _FlutterShimmnerLoadingWidgetState
+    extends State<FlutterShimmnerLoadingWidget>
+    with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<RelativeRect> _animation;
   Map<int, double> _seeds;
@@ -97,7 +100,7 @@ class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWid
 
   @override
   void initState() {
-    final List<int> listTemp =  List(widget.count);
+    final List<int> listTemp = List(widget.count);
 
     _seeds = listTemp.asMap().map((index, _) {
       return MapEntry(index, _randomSeed);
@@ -135,7 +138,7 @@ class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWid
       end: RelativeRect.fromLTRB(maxWidth, 0, -maxWidth, 0),
     ).animate(curvedAnimation)
       ..addStatusListener(
-            (status) {
+        (status) {
           if (!widget.animate) return;
           if (status == AnimationStatus.completed) {
             _animationController.reverse();
@@ -154,10 +157,10 @@ class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWid
     CrossAxisAlignment _alignment = this.widget.align == TextAlign.left
         ? CrossAxisAlignment.start
         : this.widget.align == TextAlign.right
-        ? CrossAxisAlignment.end
-        : this.widget.align == TextAlign.center
-        ? CrossAxisAlignment.center
-        : CrossAxisAlignment.baseline;
+            ? CrossAxisAlignment.end
+            : this.widget.align == TextAlign.center
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.baseline;
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
@@ -177,13 +180,13 @@ class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWid
     for (var i = 0; i < widget.count; i++) {
       double _random = widget.rebuildOnStateChange ? _randomSeed : _seeds[i];
       double _opacity = (widget.maxOpacity -
-          ((widget.maxOpacity - widget.minOpacity) * _random))
+              ((widget.maxOpacity - widget.minOpacity) * _random))
           .abs();
       // double realMaxWidth = constraints.maxWidth;
       double constrainedMaxWidth = _getMaxConstrainedWidth(constraints);
       double constrainedMinWidth = _getMinConstrainedWidth(constraints);
       double _width = (constrainedMaxWidth -
-          ((constrainedMaxWidth - constrainedMinWidth) * _random))
+              ((constrainedMaxWidth - constrainedMinWidth) * _random))
           .abs();
       final Widget staticWidget = Container(
         height: widget.lineHeight,
@@ -195,41 +198,41 @@ class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWid
       list.add(
         _animation != null && widget.animate == true
             ? AnimatedBuilder(
-            animation: _animation,
-            child: staticWidget,
-            builder: (context, child) {
-              return Container(
-                // decoration: BoxDecoration(color: Colors.purple),
-                child: ClipRect(
-                  child: Stack(
-                    overflow: Overflow.clip,
-                    children: <Widget>[
-                      child,
-                      Transform.translate(
-                        offset: Offset(_animation.value.left, 0),
-                        child: widget.customAnimationOverlay ??
-                            Container(
-                              height: widget.lineHeight,
-                              width: _width / 3,
-                              decoration: BoxDecoration(boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 18,
-                                    color: widget.animationOverlayColor ??
-                                        Color(0xFFFFFFFF),
-                                    offset: Offset(4, 3)),
-                                BoxShadow(
-                                    blurRadius: 28,
-                                    color: widget.animationOverlayColor ??
-                                        Color(0xFFFFFFFF),
-                                    offset: Offset(1, 3)),
-                              ]),
-                            ),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            })
+                animation: _animation,
+                child: staticWidget,
+                builder: (context, child) {
+                  return Container(
+                    // decoration: BoxDecoration(color: Colors.purple),
+                    child: ClipRect(
+                      child: Stack(
+                        overflow: Overflow.clip,
+                        children: <Widget>[
+                          child,
+                          Transform.translate(
+                            offset: Offset(_animation.value.left, 0),
+                            child: widget.customAnimationOverlay ??
+                                Container(
+                                  height: widget.lineHeight,
+                                  width: _width / 3,
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 18,
+                                        color: widget.animationOverlayColor ??
+                                            Color(0xFFFFFFFF),
+                                        offset: Offset(4, 3)),
+                                    BoxShadow(
+                                        blurRadius: 28,
+                                        color: widget.animationOverlayColor ??
+                                            Color(0xFFFFFFFF),
+                                        offset: Offset(1, 3)),
+                                  ]),
+                                ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                })
             : staticWidget,
       );
       if (i < widget.count - 1) {
@@ -258,4 +261,3 @@ class _FlutterShimmnerLoadingWidgetState extends State<FlutterShimmnerLoadingWid
     super.dispose();
   }
 }
-

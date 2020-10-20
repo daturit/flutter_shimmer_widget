@@ -1,28 +1,3 @@
-# flutter_shimmer_widget
-
-A package provides an easy way to add shimmer effect in Flutter project 
-
-## Getting Started
-
-## Animation
-<p>
-<img src="https://media.giphy.com/media/rKxuj8sFmaRE1G6zJm/giphy.gif?raw=true" align = "center" height = "650px">
-</p>
-
-<p>
-<img src = "https://github.com/daturit/flutter_expand_view/blob/main/flutter_expand_view/intro1.png?raw=true" align = "center" height = "550px"/>
-<img src = "https://github.com/daturit/flutter_expand_view/blob/main/flutter_expand_view/intro2.png?raw=true" align = "center" height = "550px"/>
-</p>
-
-## Example Project
-
-There is a example project in the `example` folder. Check it out. Otherwise, keep reading to get up and running.
-
-## Usage
-
-**Custom Numbers**
-
-```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/flutter_shimmer_widget.dart';
 
@@ -83,17 +58,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-```
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
