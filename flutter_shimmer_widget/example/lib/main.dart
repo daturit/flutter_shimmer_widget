@@ -6,7 +6,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,11 +35,9 @@ class HomePage extends StatelessWidget {
               ),
               CardPlaceHolderWithAvatar(),
               CardPlaceHolderWithAvatar(),
-
               CardPlaceHolderWithImage(
                 height: 200,
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: FlutterShimmnerLoadingWidget(
@@ -50,7 +47,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SimpleTextPlaceholder(),
-
             ],
           ),
         ),

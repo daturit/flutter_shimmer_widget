@@ -110,7 +110,7 @@ class CardPlaceHolderWithImage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 150,
               decoration: BoxDecoration(
-                color: Colors.grey[200].withOpacity(.6),
+                color: Colors.grey[200]!.withOpacity(.6),
               ),
             ),
             Expanded(

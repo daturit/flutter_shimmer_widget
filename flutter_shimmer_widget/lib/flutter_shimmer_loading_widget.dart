@@ -7,7 +7,7 @@ class FlutterShimmnerLoadingWidget extends StatefulWidget {
   final int count;
 
   /// Defines `color` to be used as base when building each line
-  final Color color;
+  final Color? color;
 
   /// Defines `alignment` for all the lines generated
   final TextAlign align;
@@ -37,10 +37,10 @@ class FlutterShimmnerLoadingWidget extends StatefulWidget {
   final bool animate;
 
   /// Use a [customAnimationOverlay] to display instead of the difault one
-  final Widget customAnimationOverlay;
+  final Widget? customAnimationOverlay;
 
   /// Set a custom [animationOverlayColor]
-  final Color animationOverlayColor;
+  final Color? animationOverlayColor;
 
   /// If [true] , this will cause the lines to be rebuild with different widths (randomly generated)
   /// every time any parent widget rebuilds it's state
@@ -48,8 +48,8 @@ class FlutterShimmnerLoadingWidget extends StatefulWidget {
   final bool rebuildOnStateChange;
 
   const FlutterShimmnerLoadingWidget({
-    Key key,
-    @required this.count,
+    Key? key,
+    required this.count,
     this.align = TextAlign.left,
     this.color = const Color(0xFFDEDEDE),
     this.minOpacity = 0.4,
@@ -77,9 +77,9 @@ class FlutterShimmnerLoadingWidget extends StatefulWidget {
 class _FlutterShimmnerLoadingWidgetState
     extends State<FlutterShimmnerLoadingWidget>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<RelativeRect> _animation;
-  Map<int, double> _seeds;
+  late AnimationController _animationController;
+  Animation<RelativeRect>? _animation;
+  late Map<int, double> _seeds;
 
   double get _randomSeed => Random().nextDouble();
 
@@ -100,7 +100,7 @@ class _FlutterShimmnerLoadingWidgetState
 
   @override
   void initState() {
-    final List<int> listTemp = List(widget.count);
+    final List<int?> listTemp = List.filled(widget.count, 0, growable: false);
 
     _seeds = listTemp.asMap().map((index, _) {
       return MapEntry(index, _randomSeed);
@@ -117,7 +117,7 @@ class _FlutterShimmnerLoadingWidgetState
     super.initState();
   }
 
-  void _setupAnimation([Duration _]) {
+  void _setupAnimation([Duration? _]) {
     if (context == null) {
       if (!_disposed) {
         _setupAnimation(_);
@@ -178,7 +178,7 @@ class _FlutterShimmnerLoadingWidgetState
   List<Widget> _buildLines(BoxConstraints constraints) {
     List<Widget> list = [];
     for (var i = 0; i < widget.count; i++) {
-      double _random = widget.rebuildOnStateChange ? _randomSeed : _seeds[i];
+      double _random = widget.rebuildOnStateChange ? _randomSeed : _seeds[i]!;
       double _opacity = (widget.maxOpacity -
               ((widget.maxOpacity - widget.minOpacity) * _random))
           .abs();
@@ -192,24 +192,23 @@ class _FlutterShimmnerLoadingWidgetState
         height: widget.lineHeight,
         width: _width,
         decoration: BoxDecoration(
-          color: widget.color.withOpacity(_opacity),
+          color: widget.color!.withOpacity(_opacity),
         ),
       );
       list.add(
         _animation != null && widget.animate == true
             ? AnimatedBuilder(
-                animation: _animation,
+                animation: _animation!,
                 child: staticWidget,
                 builder: (context, child) {
                   return Container(
-                    // decoration: BoxDecoration(color: Colors.purple),
                     child: ClipRect(
                       child: Stack(
-                        overflow: Overflow.clip,
+                        clipBehavior: Clip.hardEdge,
                         children: <Widget>[
-                          child,
+                          child!,
                           Transform.translate(
-                            offset: Offset(_animation.value.left, 0),
+                            offset: Offset(_animation!.value.left, 0),
                             child: widget.customAnimationOverlay ??
                                 Container(
                                   height: widget.lineHeight,
